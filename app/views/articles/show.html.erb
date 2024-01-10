@@ -1,0 +1,55 @@
+<h1><%= @article.title %></h1>
+
+<h2>
+  <% if @article.images.attached? %>
+    <% @article.images.each do |image| %>
+     <p>
+       <%= link_to url_for(image) do %>
+        <%= image_tag image.variant(resize: 500) %>
+        <%= link_to download_image_article_path(@article, image_id: image.id),
+            title:"Download This Image",
+            class:"btn btn-primary" do %>
+        <i class="fe fe-download" style="font-size: 1.5rem; color: white;"></i>
+           &nbsp;Download Image
+        <% end %>
+      <% end %></p>
+    <% end %>
+  <% end %>
+</h2>
+
+<p><%= @article.body %></p>
+
+<!-- <p><%= link_to "Edit", edit_article_path(@article), class:"btn btn-primary" %> -->
+<%= link_to edit_article_path(@article), class:"btn btn-primary" do %>
+  <i class="fe fe-gear"></i>
+  Edit
+<% end %>
+
+<%= link_to article_path(@article),
+    class:"btn btn-danger",
+    data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?",
+    } do
+    %>
+  <i class="fe fe-trash"></i>
+  Destroy
+<% end %>
+
+<h2>Comments</h2>
+<%= render @article.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/form' %>
+
+<!-- <p><%= link_to "Home", root_path, class:"btn btn-primary"  %></p> -->
+<p><%= link_to root_path, class:"btn btn-primary" do %>
+  <i class="fe fe-home"></i>
+  Home
+  <% end %>
+</p>
+
+<!-- <%= link_to root_path, class: "btn btn-primary" do %> -->
+<!--   <i class="fe fe-heart" aria-hidden="true"></i> -->
+<!--   Root -->
+<!-- <% end %> -->

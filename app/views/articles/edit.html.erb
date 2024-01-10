@@ -1,0 +1,54 @@
+<h1>Edit Article</h1>
+
+<!-- <%= render "form", article: @article %> -->
+<%= form_with model: @article do |form| %>
+
+  <% @article.images.each do |image| %>
+    <%= form.hidden_field :images, multiple: true, value: image.signed_id %>
+  <% end %>
+
+  <div>
+    <%= form.label :images %><br>
+    <%= form.file_field :images, multiple: true %><br>
+
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %><br>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :status %><br>
+    <%= form.select :status, Visible::VALID_STATUSES, selected: @article.status || 'public' %>
+  </div><br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br><p><%= link_to "Cancel", @article, class:"btn btn-primary" %></p>
+
+<% if @article.images.present? %>
+  <p><% @article.images.each do |image| %>
+    <%= image_tag image, width:300 %>
+    <%= link_to  delete_image_article_path(@article, image_id: image.id),
+        class:"btn btn-danger",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } do %>
+    <i class="fe fe-trash"></i>
+    Destroy Image
+    <% end %></p>
+  <% end %>
+<% end %>
