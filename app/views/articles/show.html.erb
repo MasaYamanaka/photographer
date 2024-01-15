@@ -39,8 +39,11 @@
 <h2>Comments</h2>
 <%= render @article.comments %>
 
-<h2>Add a comment:</h2>
-<%= render 'comments/form' %>
+<div class="container-comment col-lg-6 col-md-9" >
+  <h2>Add a comment:</h2>
+  <%= render 'comments/form' %>
+</div>
+<div class="container-fluid"></div>
 
 <!-- <p><%= link_to "Home", root_path, class:"btn btn-primary"  %></p> -->
 <p><%= link_to root_path, class:"btn btn-primary" do %>

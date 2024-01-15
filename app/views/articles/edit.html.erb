@@ -12,7 +12,7 @@
     <%= form.file_field :images, multiple: true %><br>
 
     <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, size: 40 %>
     <% @article.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
@@ -20,7 +20,7 @@
 
   <div>
     <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+    <%= form.text_area :body, size: "60x3" %><br>
     <% @article.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
     <% end %>
@@ -32,7 +32,7 @@
   </div><br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit nil, class: "btn btn-success" %>
   </div>
 <% end %>
 
