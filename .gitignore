@@ -34,8 +34,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-docker-compose.yml
+docker-compose*.yml
 docker-sync.yml
-/.docker-sync/*
+/.docker-sync/
 
-/backup/*
+/deleteme.d/
+/backup/
