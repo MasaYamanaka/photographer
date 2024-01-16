@@ -1,21 +1,22 @@
 <h1><%= @article.title %></h1>
 
-<h2>
-  <% if @article.images.attached? %>
-    <% @article.images.each do |image| %>
-     <p>
-       <%= link_to url_for(image) do %>
-        <%= image_tag image.variant(resize: 500) %>
-        <%= link_to download_image_article_path(@article, image_id: image.id),
-            title:"Download This Image",
-            class:"btn btn-primary" do %>
-        <i class="fe fe-download" style="font-size: 1.5rem; color: white;"></i>
+<% if @article.images.attached? %>
+  <% @article.images.each do |image| %>
+    <div class="container-image col-lg-6 col-md-9">
+     <%= link_to url_for(image) do %>
+       <%= image_tag image.variant(resize: 500) %>
+     <% end %>
+     <p style="padding-top: 1rem" >
+     <%= link_to download_image_article_path(@article, image_id: image.id),
+         title:"Download This Image",
+         class:"btn btn-primary" do %>
+           <i class="fe fe-download" style="font-size: 1.5rem; color: white;"></i>
            &nbsp;Download Image
-        <% end %>
-      <% end %></p>
-    <% end %>
-  <% end %>
-</h2>
+           <% end %></p>
+    </div>
+    <div class="container-fluid" ></div>
+   <% end %>
+<% end %>
 
 <p><%= @article.body %></p>
 
@@ -29,11 +30,10 @@
     class:"btn btn-danger",
     data: {
     turbo_method: :delete,
-    turbo_confirm: "Are you sure?",
-    } do
+    turbo_confirm: "Are you sure?" } do
     %>
   <i class="fe fe-trash"></i>
-  Destroy
+  Destroy Article
 <% end %>
 
 <h2>Comments</h2>
@@ -43,7 +43,7 @@
   <h2>Add a comment:</h2>
   <%= render 'comments/form' %>
 </div>
-<div class="container-fluid"></div>
+<div class="container-fluid" ></div>
 
 <!-- <p><%= link_to "Home", root_path, class:"btn btn-primary"  %></p> -->
 <p><%= link_to root_path, class:"btn btn-primary" do %>
