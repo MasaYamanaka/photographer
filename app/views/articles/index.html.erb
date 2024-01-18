@@ -1,7 +1,8 @@
 <h1>Articles</h1>
 
 <p>
-  Our page has <%= Article.public_count %> articles!
+  Our page has <%= Article.public_count %> articles and
+  <%= Article.where(status: 'public').map {|i| i.images.count}.sum %> images.
 </p>
 
 <div class="container container-m">
