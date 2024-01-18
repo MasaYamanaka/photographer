@@ -1,2 +1,2 @@
-# trial
-Stack images for trial
+# photographer
+Stack images of mountains

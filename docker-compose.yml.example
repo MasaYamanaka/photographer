@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  trial:
-    image: masayamanaka/trial:latest
+  app:
+    image: masayamanaka/photographer:latest
     environment:
       RAILS_ENV: development
       TZ: Asia/Tokyo
