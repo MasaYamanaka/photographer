@@ -9,7 +9,7 @@ class Article < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10 }
 
   validates :images, content_type: {in:[:png, :jpg, :jpeg], message: "is not png, jpg,or jpeg"},
-  size: { between: 1.kilobyte..20.megabytes , message: 'must be less than 4MB in size' }
+  size: { between: 1.kilobyte..20.megabytes , message: 'must be less than 20MB in size' }
 
   def image_as_thumbnail
     return unless image.content_type.in?(%w[image/jpeg image/jpg image/png])
